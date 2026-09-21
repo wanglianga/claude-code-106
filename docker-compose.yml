@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${DB_NAME:-tcm}
+      POSTGRES_USER: ${DB_USER:-tcm}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-tcm_pass}
+      TZ: Asia/Shanghai
+    volumes:
+      - tcm-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-tcm} -d ${DB_NAME:-tcm}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  app:
+    build:
+      context: ./backend
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-tcm}
+      DB_USER: ${DB_USER:-tcm}
+      DB_PASSWORD: ${DB_PASSWORD:-tcm_pass}
+      JWT_SECRET: ${JWT_SECRET:-tcm-county-pharmacy-demo-secret-key-please-change-0123456789}
+      TZ: Asia/Shanghai
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ./frontend
+    ports:
+      - "${CC_PUBLISH_PORT:-3106}:8080"
+    depends_on:
+      app:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  tcm-pgdata:

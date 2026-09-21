@@ -1,0 +1,109 @@
+:root {
+  --primary: #1f7a5a;
+  --primary-dark: #155c44;
+  --bg: #f4f6f5;
+  --card: #ffffff;
+  --border: #e2e7e5;
+  --text: #1f2d28;
+  --muted: #6b7b75;
+  --danger: #c0392b;
+  --warn: #d68910;
+  --info: #2471a3;
+  --ok: #1e8449;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+}
+a { color: var(--primary); text-decoration: none; }
+h1, h2, h3, h4 { margin: 0 0 12px; }
+.page-title { font-size: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+table { width: 100%; border-collapse: collapse; background: #fff; }
+th, td { padding: 9px 10px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; }
+th { background: #f0f4f2; font-weight: 600; white-space: nowrap; }
+tr:hover td { background: #fafcfb; }
+.btn {
+  display: inline-block;
+  border: 1px solid var(--primary);
+  background: var(--primary);
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin: 2px 4px 2px 0;
+}
+.btn:hover { background: var(--primary-dark); }
+.btn.secondary { background: #fff; color: var(--primary); }
+.btn.danger { background: var(--danger); border-color: var(--danger); }
+.btn.warn { background: var(--warn); border-color: var(--warn); }
+.btn.sm { padding: 3px 9px; font-size: 12px; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+input, select, textarea {
+  width: 100%;
+  padding: 7px 9px;
+  border: 1px solid #cdd6d2;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  background: #fff;
+}
+textarea { min-height: 60px; resize: vertical; }
+label { display: block; font-size: 12px; color: var(--muted); margin: 8px 0 3px; }
+.form-row { display: flex; gap: 12px; flex-wrap: wrap; }
+.form-row > div { flex: 1; min-width: 140px; }
+.tag {
+  display: inline-block; padding: 2px 8px; border-radius: 10px;
+  font-size: 12px; background: #e8f1ed; color: var(--primary-dark);
+}
+.tag.gray { background: #eceff1; color: #555; }
+.tag.red { background: #fdecea; color: var(--danger); }
+.tag.orange { background: #fef5e7; color: var(--warn); }
+.tag.blue { background: #eaf2f8; color: var(--info); }
+.tag.green { background: #e9f7ef; color: var(--ok); }
+.muted { color: var(--muted); }
+.small { font-size: 12px; }
+.mt8 { margin-top: 8px; } .mt16 { margin-top: 16px; }
+.flex { display: flex; align-items: center; gap: 8px; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.timeline { list-style: none; margin: 0; padding: 0 0 0 18px; border-left: 2px solid var(--border); }
+.timeline li { position: relative; padding: 0 0 14px 14px; }
+.timeline li::before {
+  content: ''; position: absolute; left: -23px; top: 3px;
+  width: 10px; height: 10px; border-radius: 50%; background: var(--primary);
+}
+.timeline .stage { font-weight: 600; }
+.timeline .when { color: var(--muted); font-size: 12px; }
+.stat { font-size: 26px; font-weight: 700; color: var(--primary-dark); }
+.kv { display: grid; grid-template-columns: 110px 1fr; row-gap: 6px; }
+.kv .k { color: var(--muted); }
+.toast {
+  position: fixed; top: 14px; left: 50%; transform: translateX(-50%);
+  background: #2c3e50; color: #fff; padding: 10px 20px; border-radius: 8px;
+  z-index: 999; box-shadow: 0 4px 16px rgba(0,0,0,.2);
+}
+.toast.error { background: var(--danger); }
+.toast.ok { background: var(--ok); }
+.checkbox-line { display: flex; align-items: center; gap: 6px; margin-top: 10px; }
+.checkbox-line input { width: auto; }
+.login-wrap {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #155c44, #2e8b6c);
+}
+.login-box { background: #fff; border-radius: 14px; padding: 32px; width: 420px; box-shadow: 0 10px 40px rgba(0,0,0,.2); }
+.pill-btns button { margin-bottom: 6px; }
