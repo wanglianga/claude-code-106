@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: tcm-fulfillment
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/tcm}
+    username: ${DB_USER:tcm}
+    password: ${DB_PASSWORD:tcm123}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  jackson:
+    time-zone: Asia/Shanghai
+    date-format: yyyy-MM-dd HH:mm:ss
+
+app:
+  jwt-secret: ${JWT_SECRET:tcm-fulfillment-dev-secret-key-0123456789abcdef}
+  jwt-expire-hours: ${JWT_EXPIRE_HOURS:12}
+  delivery-timeout-hours: ${DELIVERY_TIMEOUT_HOURS:4}
+  decoct-fee-per-dose: ${DECOCT_FEE_PER_DOSE:3}
+  delivery-fee: ${DELIVERY_FEE:5}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: never
